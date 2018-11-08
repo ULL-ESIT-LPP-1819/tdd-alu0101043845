@@ -1,4 +1,3 @@
-require 'lib/etiqueta'
 RSpec.describe Etiqueta do
   it "has a version number" do
     expect(Etiqueta::VERSION).not_to be nil
@@ -6,5 +5,8 @@ RSpec.describe Etiqueta do
 
   it "does something useful" do
     expect(true).to eq(true)
+  end
+
+  describe Etiqueta_nut do
   end
 end
