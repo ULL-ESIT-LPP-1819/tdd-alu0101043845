@@ -16,10 +16,41 @@ RSpec.describe Etiqueta do
     end
 
     describe "#obtener atributos" do
-	    it "Obtener nomnre (Nombre)" do
+	    it "Obtener nomnbre (Nombre)" do
 		    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
 		    expect(@etq.name).to eq("Nombre")
 	    end
+	    
+	    it "Obtener grasas (64)" do
+                    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+                    expect(@etq.grasas).to eq(64)
+            end
+
+	    it "Obtener grasas saturadas (grasas_sat)" do
+                    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+                    expect(@etq.grasas_sat).to eq(34)
+            end
+
+            it "Obtener hidratos de carbono (70)" do
+                    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+                    expect(@etq.hidratos).to eq(70)
+            end
+
+            it "Obtener azúcares (22)" do
+                    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+                    expect(@etq.azucar).to eq(22)
+            end
+
+            it "Obtener proteínas (42)" do
+                    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+                    expect(@etq.proteina).to eq(42)
+            end
+
+            it "Obtener sal (56)" do
+                    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+                    expect(@etq.sal).to eq(56)
+            end
+
     end
 
   end
