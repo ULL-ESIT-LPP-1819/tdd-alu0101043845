@@ -13,5 +13,6 @@ RSpec.describe Etiqueta do
 	    it "Se inicializa el objeto" do
 		    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
 	    end
+    end
   end
 end
