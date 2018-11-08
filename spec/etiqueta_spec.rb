@@ -14,5 +14,13 @@ RSpec.describe Etiqueta do
 		    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
 	    end
     end
+
+    describe "#obtener atributos" do
+	    it "Obtener nomnre (Nombre)" do
+		    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+		    expect(@etq.name).to eq("Nombre")
+	    end
+    end
+
   end
 end
