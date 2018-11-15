@@ -91,7 +91,16 @@ RSpec.describe Etiqueta do
 	    end
 
 	    it "Insertar nodo atrás" do
+		    @lista.push_back(@nodo3)
+	    end
+
+	    it "Insertar nodos y comprobar tamaño" do
+		    @lista.push(@nodo2)
+		    @lista.push(@nodo1)
+		    @lista.push_back(@nodo3)
+		    @lista.push_back(@nodo4)
 		    @lista.push_back(@nodo5)
+		    expect(@lista.tam).to eq(5)
 	    end
     end
 
