@@ -109,6 +109,12 @@ RSpec.describe Etiqueta do
 		    @lista.pop_front()
 	    end
 
+	    it "Eliminar nodo tail" do
+		    @lista.push(@nodo1)
+		    @lista.push_back(@nodo5)
+		    @lista.pop_back()
+	    end
+
     end
 
   end
