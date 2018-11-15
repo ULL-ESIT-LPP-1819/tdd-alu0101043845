@@ -137,6 +137,21 @@ RSpec.describe Etiqueta do
 		    expect(@lista.tail.prev.value.sal).to eq(0.6)
 		    expect(@lista.tail.value.sal).to eq(0.7)
 	    end
+
+            it "Comprobar orden inverso" do
+                    @lista.push(@nodo1)
+                    @lista.push(@nodo2)
+                    @lista.push(@nodo3)
+                    @lista.push(@nodo4)
+                    @lista.push(@nodo5)
+                    @lista.order_by_salt()
+		    @lista.inversion()
+                    expect(@lista.head.value.sal).to eq(0.7)
+                    expect(@lista.head.next.value.sal).to eq(0.6)
+                    expect(@lista.head.next.next.value.sal).to eq(0.4)
+                    expect(@lista.tail.prev.value.sal).to eq(0.2)
+                    expect(@lista.tail.value.sal).to eq(0.1)
+            end
     end
 
   end
