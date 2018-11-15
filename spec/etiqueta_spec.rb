@@ -66,5 +66,15 @@ RSpec.describe Etiqueta do
 
     end
 
+    describe "#Uso de la lista" do
+	    it "Insertar nodo a la lista" do
+		    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+		    @nodo = Node.new(@etq,nil,nil)
+		    @list = Lista.new()
+		    @list.push(@nodo)
+	    end
+
+    end
+
   end
 end
