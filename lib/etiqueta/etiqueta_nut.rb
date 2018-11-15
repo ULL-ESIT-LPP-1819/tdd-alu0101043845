@@ -45,23 +45,29 @@ class Lista
 	end
 
 	def pop_front()
-		if(@tam == 0)
-			"La lista está vacía"
-		else
-			@head.next.prev = nil
-			@head = @head.next
-			@tam = @tam - 1
+		if(@tam != 0)
+			if(@tam == 1)
+				@head = nil
+				@tam = 0
+			else
+				@head.next.prev = nil
+				@head = @head.next
+				@tam = @tam - 1
+			end
 		end
 	end
 
 	def pop_back()
-		if(@tam == 0)
-			"La lista está vacía"
-		else
-			@tail.prev.next = nil
-			@tail = @tail.prev
-			@tam = @tam - 1
-		end 
+		if(@tam != 0) 
+			if(@tam == 1)
+				@tail = nil
+				@tam = 0
+			else
+				@tail.prev.next = nil
+				@tail = @tail.prev
+				@tam = @tam - 1
+			end 
+		end
 	end
 
 	def order_by_salt()
@@ -86,6 +92,18 @@ class Lista
 		end
 	end
 
+	def inversion()
+		lista2 = Lista.new()
+		while @tam != 0
+			lista2.push_back(Node.new(@tail.value,nil,nil))
+			self.pop_back()
+		end
+		while lista2.tam != 0
+			self.push(Node.new(lista2.tail.value,nil,nil))
+			lista2.pop_back()
+		end
+		
+	end
 					
 
 end
