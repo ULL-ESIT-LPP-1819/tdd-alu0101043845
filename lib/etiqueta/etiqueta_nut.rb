@@ -17,4 +17,17 @@ class Lista
 	def initialize()
 		@tam, @head, @tail = 0, nil, nil
 	end
+
+	def push(nodo)
+		if(@tam == 0)
+			@tail = nodo
+			@tail.next = nil 
+		else
+			@head.prev = nodo
+			nodo.next = @head
+		end
+		@head = nodo
+		@head.prev = nil
+		@tam = @tam + 1
+	end
 end
