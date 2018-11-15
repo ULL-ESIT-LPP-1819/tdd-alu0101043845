@@ -54,4 +54,14 @@ class Lista
 		end
 	end
 
+	def pop_back()
+		if(@tam == 0)
+			"La lista está vacía"
+		else
+			@tail.prev.next = nil
+			@tail = @tail.prev
+			@tam = @tam - 1
+		end 
+	end
+
 end
