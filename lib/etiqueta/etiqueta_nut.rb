@@ -30,4 +30,17 @@ class Lista
 		@head.prev = nil
 		@tam = @tam + 1
 	end
+
+	def push_back(nodo)
+		if(@tam == 0)
+			@head = nodo
+			@head.prev = nil
+		else
+			@tail.next = nodo
+			nodo.prev = @tail
+		end
+		@tail = nodo
+		@tail.next = nil
+		@tam = @tam + 1
+	end
 end
