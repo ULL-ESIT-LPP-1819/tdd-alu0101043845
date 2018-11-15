@@ -64,4 +64,28 @@ class Lista
 		end 
 	end
 
+	def order_by_salt()
+		if(@tam == 0)
+			"La lista está vacía"
+		else
+	
+			aux = @head
+			while aux.next != nil
+				aux2 = aux.next
+				while aux2 != nil
+					if(aux.value.sal > aux2.value.sal)
+						max = aux2.value
+						aux2.value = aux.value
+						aux.value = max
+
+					end
+					aux2 = aux2.next
+				end
+				aux = aux.next
+			end
+		end
+	end
+
+					
+
 end
