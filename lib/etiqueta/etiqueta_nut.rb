@@ -43,4 +43,15 @@ class Lista
 		@tail.next = nil
 		@tam = @tam + 1
 	end
+
+	def pop_front()
+		if(@tam == 0)
+			"La lista está vacía"
+		else
+			@head.next.prev = nil
+			@head = @head.next
+			@tam = @tam - 1
+		end
+	end
+
 end
