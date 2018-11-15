@@ -88,7 +88,10 @@ RSpec.describe Etiqueta do
 		    @nodo = Node.new(@etq,nil,nil)
 		    @list = Lista.new()
 		    @list.push(@nodo)
+	    end
 
+	    it "Insertar nodo atrás" do
+		    @list.push_back(@nodo5)
 	    end
     end
 
