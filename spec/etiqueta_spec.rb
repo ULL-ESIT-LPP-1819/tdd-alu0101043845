@@ -115,6 +115,16 @@ RSpec.describe Etiqueta do
 		    @lista.pop_back()
 	    end
 
+	    it "Ordenar lista por cantidad de sal" do
+                    @lista.push(@nodo1)
+                    @lista.push(@nodo2)
+		    @lista.push(@nodo3)
+		    @lista.push(@nodo4)
+		    @lista.push(@nodo5)
+		    @lista.order_by_salt()
+	    end
+
+
     end
 
   end
