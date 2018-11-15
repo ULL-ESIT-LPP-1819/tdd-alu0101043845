@@ -13,6 +13,10 @@ RSpec.describe Etiqueta do
 	    it "Se inicializa el objeto" do
 		    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
 	    end
+
+	    it "Se inicializa la lista" do
+		    @lista = Lista.new()
+	    end
     end
 
     describe "#obtener atributos" do
