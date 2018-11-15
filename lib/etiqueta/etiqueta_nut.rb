@@ -8,3 +8,11 @@ class Etiqueta_nut
 		"(\"#{@name}\",#{@grasas},#{@grasas_sat},#{@hidratos},#{@azucar},#{@proteina},#{@sal})"
 	end
 end
+
+class Lista
+	attr_reader :tam, :head, :tail
+
+	def initialize()
+		@tam, @head, @tail = 0, nil, nil
+	end
+end
