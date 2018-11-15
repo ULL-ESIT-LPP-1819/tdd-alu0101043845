@@ -51,6 +51,11 @@ RSpec.describe Etiqueta do
                     expect(@etq.sal).to eq(56)
             end
 
+            it "Obtener lista de atributos" do
+                    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
+                    expect(@etq.to_s).to eq("(\"Nombre\",64,34,70,22,42,56)")
+            end
+
     end
 
   end
