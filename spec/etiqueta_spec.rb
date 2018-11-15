@@ -3,7 +3,7 @@ RSpec.describe Etiqueta do
 		@etq1 = Etiqueta_nut.new("Tortilla",29.2,8.3,1.6,0.8,26.4,0.4)
 		@etq2 = Etiqueta_nut.new("Galletas saladas",6.2,1.4,52,1.6,6.7,0.7)
 		@etq3 = Etiqueta_nut.new("Pan",0.9,0.2,13.7,1.4,2.6,0.1)
-		@etq4 = Etiqueta_nut.new("Galletas con chocolate",2.8,1.2,7.8,4.3,0.6,0.1)
+		@etq4 = Etiqueta_nut.new("Galletas con chocolate",2.8,1.2,7.8,4.3,0.6,0.2)
 		@etq5 = Etiqueta_nut.new("Bollo",16.5,4.4,45,2.2,7.1,0.6)
 
 		@nodo1 = Node.new(@etq1,nil,nil)
@@ -124,7 +124,19 @@ RSpec.describe Etiqueta do
 		    @lista.order_by_salt()
 	    end
 
-
+	    it "Comprobar orden" do
+		    @lista.push(@nodo1)
+                    @lista.push(@nodo2)
+                    @lista.push(@nodo3)
+                    @lista.push(@nodo4)
+                    @lista.push(@nodo5)
+                    @lista.order_by_salt()
+                    expect(@lista.head.value.sal).to eq(0.1)
+		    expect(@lista.head.next.value.sal).to eq(0.2)
+		    expect(@lista.head.next.next.value.sal).to eq(0.4)
+		    expect(@lista.tail.prev.value.sal).to eq(0.6)
+		    expect(@lista.tail.value.sal).to eq(0.7)
+	    end
     end
 
   end
