@@ -17,6 +17,10 @@ RSpec.describe Etiqueta do
 	    it "Se inicializa la lista" do
 		    @lista = Lista.new()
 	    end
+
+	    it "Se inicializa un nodo" do
+		    @nodo = Node.new("etiqueta",nil,nil)
+	    end
     end
 
     describe "#obtener atributos" do
