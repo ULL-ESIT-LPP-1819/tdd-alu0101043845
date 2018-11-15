@@ -1,4 +1,20 @@
 RSpec.describe Etiqueta do
+	before :each do
+		@etq1 = Etiqueta_nut.new("Tortilla",29.2,8.3,1.6,0.8,26.4,0.4)
+		@etq2 = Etiqueta_nut.new("Galletas saladas",6.2,1.4,52,1.6,6.7,0.7)
+		@etq3 = Etiqueta_nut.new("Pan",0.9,0.2,13.7,1.4,2.6,0.1)
+		@etq4 = Etiqueta_nut.new("Galletas con chocolate",2.8,1.2,7.8,4.3,0.6,0.1)
+		@etq5 = Etiqueta_nut.new("Bollo",16.5,4.4,45,2.2,7.1,0.6)
+
+		@nodo1 = Node.new(@etq1,nil,nil)
+		@nodo2 = Node.new(@etq2,nil,nil)
+		@nodo3 = Node.new(@etq3,nil,nil)
+		@nodo4 = Node.new(@etq4,nil,nil)
+		@nodo5 = Node.new(@etq5,nil,nil)
+		@lista = Lista.new()
+	end
+	
+
   it "has a version number" do
     expect(Etiqueta::VERSION).not_to be nil
   end
@@ -72,8 +88,8 @@ RSpec.describe Etiqueta do
 		    @nodo = Node.new(@etq,nil,nil)
 		    @list = Lista.new()
 		    @list.push(@nodo)
-	    end
 
+	    end
     end
 
   end
