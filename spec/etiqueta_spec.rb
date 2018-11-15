@@ -102,6 +102,13 @@ RSpec.describe Etiqueta do
 		    @lista.push_back(@nodo5)
 		    expect(@lista.tam).to eq(5)
 	    end
+
+	    it "Eliminar nodo head" do 
+		    @lista.push(@nodo1)
+		    @lista.push_back(@nodo5)
+		    @lista.pop_front()
+	    end
+
     end
 
   end
