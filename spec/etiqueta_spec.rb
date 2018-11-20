@@ -5,12 +5,6 @@ RSpec.describe Etiqueta do
 		@etq3 = Etiqueta_nut.new("Pan",0.9,0.2,13.7,1.4,2.6,0.1)
 		@etq4 = Etiqueta_nut.new("Galletas con chocolate",2.8,1.2,7.8,4.3,0.6,0.2)
 		@etq5 = Etiqueta_nut.new("Bollo",16.5,4.4,45,2.2,7.1,0.6)
-
-		@nodo1 = Node.new(@etq1,nil,nil)
-		@nodo2 = Node.new(@etq2,nil,nil)
-		@nodo3 = Node.new(@etq3,nil,nil)
-		@nodo4 = Node.new(@etq4,nil,nil)
-		@nodo5 = Node.new(@etq5,nil,nil)
 		@lista = Lista.new()
 	end
 	
@@ -85,51 +79,50 @@ RSpec.describe Etiqueta do
     describe "#Uso de la lista" do
 	    it "Insertar nodo a la lista" do
 		    @etq = Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
-		    @nodo = Node.new(@etq,nil,nil)
 		    @list = Lista.new()
-		    @list.push(@nodo)
+		    @list.push(@etq)
 	    end
 
 	    it "Insertar nodo atrás" do
-		    @lista.push_back(@nodo3)
+		    @lista.push_back(@etq3)
 	    end
 
 	    it "Insertar nodos y comprobar tamaño" do
-		    @lista.push(@nodo2)
-		    @lista.push(@nodo1)
-		    @lista.push_back(@nodo3)
-		    @lista.push_back(@nodo4)
-		    @lista.push_back(@nodo5)
+		    @lista.push(@etq2)
+		    @lista.push(@etq1)
+		    @lista.push_back(@etq3)
+		    @lista.push_back(@etq4)
+		    @lista.push_back(@etq5)
 		    expect(@lista.tam).to eq(5)
 	    end
 
 	    it "Eliminar nodo head" do 
-		    @lista.push(@nodo1)
-		    @lista.push_back(@nodo5)
+		    @lista.push(@etq1)
+		    @lista.push_back(@etq5)
 		    @lista.pop_front()
 	    end
 
 	    it "Eliminar nodo tail" do
-		    @lista.push(@nodo1)
-		    @lista.push_back(@nodo5)
+		    @lista.push(@etq1)
+		    @lista.push_back(@etq5)
 		    @lista.pop_back()
 	    end
 
 	    it "Ordenar lista por cantidad de sal" do
-                    @lista.push(@nodo1)
-                    @lista.push(@nodo2)
-		    @lista.push(@nodo3)
-		    @lista.push(@nodo4)
-		    @lista.push(@nodo5)
+                    @lista.push(@etq1)
+                    @lista.push(@etq2)
+		    @lista.push(@etq3)
+		    @lista.push(@etq4)
+		    @lista.push(@etq5)
 		    @lista.order_by_salt()
 	    end
 
 	    it "Comprobar orden" do
-		    @lista.push(@nodo1)
-                    @lista.push(@nodo2)
-                    @lista.push(@nodo3)
-                    @lista.push(@nodo4)
-                    @lista.push(@nodo5)
+		    @lista.push(@etq1)
+                    @lista.push(@etq2)
+                    @lista.push(@etq3)
+                    @lista.push(@etq4)
+                    @lista.push(@etq5)
                     @lista.order_by_salt()
                     expect(@lista.head.value.sal).to eq(0.1)
 		    expect(@lista.head.next.value.sal).to eq(0.2)
@@ -139,11 +132,11 @@ RSpec.describe Etiqueta do
 	    end
 
             it "Comprobar orden inverso" do
-                    @lista.push_back(@nodo1)
-                    @lista.push_back(@nodo2)
-                    @lista.push_back(@nodo3)
-                    @lista.push_back(@nodo4)
-                    @lista.push_back(@nodo5)
+                    @lista.push_back(@etq1)
+                    @lista.push_back(@etq2)
+                    @lista.push_back(@etq3)
+                    @lista.push_back(@etq4)
+                    @lista.push_back(@etq5)
 		    @lista.inversion()
                     expect(@lista.head.value.name).to eq("Bollo")
                     expect(@lista.head.next.value.name).to eq("Galletas con chocolate")
