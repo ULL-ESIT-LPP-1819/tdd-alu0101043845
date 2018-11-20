@@ -131,6 +131,15 @@ RSpec.describe Etiqueta do
 		    expect(@lista.tail.value.sal).to eq(0.7)
 	    end
 
+	    it "comprobar el funcionamiento de to_s" do
+	 	    @lista.push_back(@etq1)
+                    @lista.push_back(@etq2)
+                    @lista.push_back(@etq3)
+                    @lista.push_back(@etq4)
+                    @lista.push_back(@etq5)
+		    expect(@lista.to_s()).to eq("{(\"Tortilla\",29.2,8.3,1.6,0.8,26.4,0.4), (\"Galletas saladas\",6.2,1.4,52,1.6,6.7,0.7), (\"Pan\",0.9,0.2,13.7,1.4,2.6,0.1), (\"Galletas con chocolate\",2.8,1.2,7.8,4.3,0.6,0.2), (\"Bollo\",16.5,4.4,45,2.2,7.1,0.6)}")
+    	    end
+
             it "Comprobar orden inverso" do
                     @lista.push_back(@etq1)
                     @lista.push_back(@etq2)

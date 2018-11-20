@@ -18,7 +18,8 @@ class Lista
 		@tam, @head, @tail = 0, nil, nil
 	end
 
-	def push(nodo)
+	def push(val)
+		nodo= Node.new(val,nil,nil)
 		if(@tam == 0)
 			@tail = nodo
 			@tail.next = nil 
@@ -31,7 +32,8 @@ class Lista
 		@tam = @tam + 1
 	end
 
-	def push_back(nodo)
+	def push_back(val)
+		nodo = Node.new(val,nil,nil)
 		if(@tam == 0)
 			@head = nodo
 			@head.prev = nil
@@ -95,14 +97,28 @@ class Lista
 	def inversion()
 		lista2 = Lista.new()
 		while @tam != 0
-			lista2.push_back(Node.new(@tail.value,nil,nil))
+			lista2.push_back(@tail.value)
 			self.pop_back()
 		end
 		while lista2.tam != 0
-			self.push(Node.new(lista2.tail.value,nil,nil))
+			self.push(lista2.tail.value)
 			lista2.pop_back()
 		end
 		
+	end
+
+	def to_s()
+                cadena = "{"
+		aux = self.head
+		while aux != nil
+			cadena = cadena + aux.value.to_s
+			if(aux.next != nil)
+				cadena = cadena + ", "
+			end
+			aux = aux.next
+		end
+		cadena = cadena + "}"
+		cadena
 	end
 					
 
