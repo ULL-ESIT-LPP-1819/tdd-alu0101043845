@@ -161,7 +161,12 @@ RSpec.describe Etiqueta do
 	it "Crear individuos" do
 		@sujeto = Valoracion_nut::Individuo.new(0,80,2,20,"hombre",54.0,60.0)
 	end
-    end
 
+	it "Comprobar to_s" do
+		@sujeto = Valoracion_nut::Individuo.new(0,80,2,20,"hombre",54.0,60.0)
+		expect(@sujeto.to_s).to eq("(80kg, 2m, 20 años, hombre, 54.0cm, 60.0cm, No es paciente, No está en tratamiento)")
+    
+	end
+    end
 
 end
