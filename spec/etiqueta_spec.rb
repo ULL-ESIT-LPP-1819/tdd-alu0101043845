@@ -1,4 +1,5 @@
 RSpec.describe Etiqueta do
+
 	before :each do
 		@etq1 = Valoracion_nut::Etiqueta_nut.new("Tortilla",29.2,8.3,1.6,0.8,26.4,0.4)
 		@etq2 = Valoracion_nut::Etiqueta_nut.new("Galletas saladas",6.2,1.4,52,1.6,6.7,0.7)
@@ -75,8 +76,8 @@ RSpec.describe Etiqueta do
             end
 
     end
-
-    describe "#Uso de la lista" do
+  end
+    describe Valoracion_nut::Lista do
 	    it "Insertar nodo a la lista" do
 		    @etq = Valoracion_nut::Etiqueta_nut.new("Nombre",64,34,70,22,42,56)
 		    @list = Valoracion_nut::Lista.new()
@@ -155,5 +156,12 @@ RSpec.describe Etiqueta do
             end
     end
 
-  end
+    describe Valoracion_nut::Individuo do
+	
+	it "Crear individuos" do
+		@sujeto = Valoracion_nut::Individuo.new(0,80,2,20,"hombre",54.0,60.0)
+	end
+    end
+
+
 end
