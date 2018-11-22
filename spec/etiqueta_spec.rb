@@ -176,10 +176,14 @@ RSpec.describe Etiqueta do
 	it "Comprobar clase" do
 		expect(@suj1.class).to eq(Valoracion_nut::Individuo)
 		expect(@suj1.instance_of? Valoracion_nut::Individuo).to eq(true)
-	end
-        it "Comprobar tipo" do
                 expect(@suj1.is_a? Valoracion_nut::Individuo).to eq(true)
+        	expect(@suj1.is_a? Object).to eq(true)
+		expect(@suj1.kind_of? Valoracion_nut::Individuo).to eq(true)
         end
+
+	it "Comprobar tipo" do
+		expect(@suj1.respond_to?:paciente).to eq(true)
+	end
 
     end
 
