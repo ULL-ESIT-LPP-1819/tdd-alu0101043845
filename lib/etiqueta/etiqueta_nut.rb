@@ -1,5 +1,5 @@
 Node = Struct.new(:value, :next, :prev)
-
+module Valoracion_nut
 class Etiqueta_nut
 	attr_reader :name, :grasas, :grasas_sat, :hidratos, :azucar, :proteina, :sal
 	def initialize(n, g, gs, h, a, p, s)
@@ -122,4 +122,125 @@ class Lista
 	end
 					
 
+end
+
+class Valoracion_nutricional
+
+	attr_reader :peso, :talla, :edad, :sexo, :c_cintura, :c_cadera
+
+	def initialize(peso, talla, edad, sexo, c_cintura, c_cadera)
+		@peso, @talla, @edad, @sexo, @c_cintura, @c_cadera = peso, talla, edad, sexo, c_cintura, c_cadera
+	end
+
+	def to_s
+		"(#{@peso}kg, #{@talla}m, #{@edad} años, #{@sexo}, #{@c_cintura}cm, #{@c_cadera}cm)"
+	end
+
+	def calcular_imc
+		imc = @peso/(@talla*@talla)
+	end
+
+	def imc_descripcion
+		imc = calcular_imc
+		imc.round(3)
+		if imc < 18.500
+			"IMC: #{imc}; Clasificación de la OMS: Bajo peso; Descripción popular: Delgado"
+
+		elsif imc < 25.000
+			"IMC: #{imc}; Clasificación de la OMS: Adecuado; Descripción popular: Aceptable"
+
+		elsif imc < 30.000
+			"IMC: #{imc}; Clasificación de la OMS: Sobrepeso; Descripción popular: Sobrepeso"
+
+		elsif imc < 35.000
+			"IMC: #{imc}; Clasificación de la OMS: Obesidad grado 1; Descripción popular: Obesidad"
+
+		elsif imc < 40.000
+			"IMC: #{imc}; Clasificación de la OMS: Obesidad grado 2; Descripción popular: Obesidad"
+
+		else
+			"IMC: #{imc}; Clasificación de la OMS: Obesidad grado 3; Descripción popular: Obesidad"
+		end
+	end
+
+	def calcular_grasa
+		imc = calcular_imc
+		if @sexo == "mujer"
+			grasa = 1.2*imc+0.23*@edad-5.4
+			grasa.round(3)
+		else
+			grasa = 1.2*(@peso/(@talla*@talla))+0.23*@edad-16.2
+			grasa.round(3)
+		end
+	end
+
+	def calcular_rcc
+		rcc = @c_cintura/@c_cadera
+		rcc.round(3)
+	end
+
+	def rcc_descripcion
+		rcc = calcular_rcc
+
+		if @sexo == "hombre"
+			if rcc > 1.010
+				"RCC: #{rcc}; Riesgo: Muy alto"
+			elsif rcc > 0.950
+				"RCC: #{rcc}; Riesgo: Alto"
+			elsif rcc > 0.880
+				"RCC: #{rcc}; Riesgo: Moderado"
+			elsif rcc >= 0.830
+				"RCC: #{rcc}; Riesgo: Bajo"
+			else
+				"No hay registro"
+			end
+		else
+			if rcc > 0.82
+				"RCC: #{rcc}; Riesgo: Alto"
+			elsif rcc > 0.78
+				"RCC: #{rcc}; Riesgo: Moderado"
+			elsif rcc >= 0.72
+				"RCC: #{rcc}; Riesgo: Bajo"
+			else
+				"No hay registro"
+			end
+		end
+	end
+end
+
+class Individuo < Valoracion_nutricional
+
+        attr_reader :paciente, :tratamiento
+
+        def initialize(paciente, peso, talla, edad, sexo, c_cintura, c_cadera)
+                @paciente, @peso, @talla, @edad, @sexo, @c_cintura, @c_cadera = paciente, peso, talla, edad, sexo, c_cintura, c_cadera
+        	
+		imc = super.calcular_imc
+                imc.round(3)
+
+                if imc < 35.000
+                        @tratamiento = 0
+		else
+			@tratamiento = 1
+                end
+	
+	end
+
+        def to_s
+		if @paciente < 1
+			pac = "No es paciente"
+		else
+			pac = "Es paciente"
+		end
+
+		if @tratamiento < 1
+                        trat = "No está en tratamiento"
+                else
+                        trat = "Está en tratamiento"
+                end
+
+
+                "(#{@peso}kg, #{@talla}m, #{@edad} años, #{@sexo}, #{@c_cintura}cm, #{@c_cadera}cm, #{pac}, #{trat})"
+        end
+end
 end
