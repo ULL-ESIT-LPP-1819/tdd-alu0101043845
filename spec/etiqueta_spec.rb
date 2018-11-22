@@ -7,6 +7,11 @@ RSpec.describe Etiqueta do
 		@etq4 = Valoracion_nut::Etiqueta_nut.new("Galletas con chocolate",2.8,1.2,7.8,4.3,0.6,0.2)
 		@etq5 = Valoracion_nut::Etiqueta_nut.new("Bollo",16.5,4.4,45,2.2,7.1,0.6)
 		@lista = Valoracion_nut::Lista.new()
+		@suj1 = Valoracion_nut::Individuo.new(0,80,2,20,"hombre",54.0,60.0)
+		@suj2 = Valoracion_nut::Individuo.new(1,75,1.8,19,"hombre",70.0,75.0)
+		@suj3 = Valoracion_nut::Individuo.new(1,140,1.56,17,"mujer",90.0,100.0)
+		@suj4 = Valoracion_nut::Individuo.new(1,130,1.7,30,"hombre",86.0,90.0)
+		@suj5 = Valoracion_nut::Individuo.new(0,30,1.5,10,"mujer",34.0,40.0)
 	end
 	
 
@@ -166,6 +171,10 @@ RSpec.describe Etiqueta do
 		@sujeto = Valoracion_nut::Individuo.new(0,80,2,20,"hombre",54.0,60.0)
 		expect(@sujeto.to_s).to eq("(80kg, 2m, 20 años, hombre, 54.0cm, 60.0cm, No es paciente, No está en tratamiento)")
     
+	end
+
+	it "Comprobar clase" do
+		expect(@suj1.instance_of? Valoracion_nut::Individuo).to eq(true)
 	end
     end
 
