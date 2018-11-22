@@ -174,8 +174,13 @@ RSpec.describe Etiqueta do
 	end
 
 	it "Comprobar clase" do
+		expect(@suj1.class).to eq(Valoracion_nut::Individuo)
 		expect(@suj1.instance_of? Valoracion_nut::Individuo).to eq(true)
 	end
+        it "Comprobar tipo" do
+                expect(@suj1.is_a? Valoracion_nut::Individuo).to eq(true)
+        end
+
     end
 
 end
