@@ -1,5 +1,5 @@
 Node = Struct.new(:value, :next, :prev)
-module Valoracion_nut
+
 	class Etiqueta_nut
 		attr_reader :name, :grasas, :grasas_sat, :hidratos, :azucar, :proteina, :sal
 		def initialize(n, g, gs, h, a, p, s)
@@ -18,6 +18,7 @@ module Valoracion_nut
 			@tam, @head, @tail = 0, nil, nil
 		end
 	
+
 		def push(val)
 			nodo= Node.new(val,nil,nil)
 			if(@tam == 0)
@@ -93,7 +94,7 @@ module Valoracion_nut
 				end
 			end
 		end
-
+		
 		def inversion()
 			lista2 = Lista.new()
 			while @tam != 0
@@ -121,6 +122,7 @@ module Valoracion_nut
 			cadena
 		end
 	end
+module Valoracion_nut
 
 	class Val_nut
 
