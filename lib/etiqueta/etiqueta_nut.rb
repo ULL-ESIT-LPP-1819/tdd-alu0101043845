@@ -214,7 +214,7 @@ module Valoracion_nut
         	        super(peso, talla, edad, sexo, c_cintura, c_cadera)
 			@paciente = paciente
         	
-                        imc = @peso/(@talla*@talla)
+                        imc = calcular_imc
 
                 	imc.round(3)
 	

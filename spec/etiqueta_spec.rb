@@ -185,6 +185,14 @@ RSpec.describe Etiqueta do
 		expect(@suj1.respond_to?:paciente).to eq(true)
 	end
 
+	it "Comprobar jerarquía" do
+		expect(@suj1.class.superclass).to eq(Valoracion_nut::Val_nut)
+		expect(@suj1.class.superclass.superclass).to eq(Object)
+		expect(@suj1.class.superclass.superclass.superclass).to eq(BasicObject)
+		expect(@suj1.class.superclass.superclass.superclass.superclass).to eq(nil)
+	end
+
+
     end
 
 end
