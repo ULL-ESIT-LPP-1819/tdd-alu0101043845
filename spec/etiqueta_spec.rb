@@ -193,6 +193,55 @@ RSpec.describe Etiqueta do
 		    expect(@lista.tail.prev.value.name).to eq("Galletas saladas")
                     expect(@lista.tail.value.name).to eq("Tortilla")
             end
+
+	    describe "Enumerar etiquetas" do
+		    it "Máximo" do
+			    @lista.push_back(@etq1)
+	                    @lista.push_back(@etq2)
+        	            @lista.push_back(@etq3)
+                	    @lista.push_back(@etq4)
+	                    @lista.push_back(@etq5)
+			    expect(@lista.max).to eq(@etq1)
+		    end
+
+		    it "Mínimo" do
+                            @lista.push_back(@etq1)
+                            @lista.push_back(@etq2)
+                            @lista.push_back(@etq3)
+                            @lista.push_back(@etq4)
+                            @lista.push_back(@etq5)
+                            expect(@lista.min).to eq(@etq5)
+                    end
+
+                    it "Sort" do
+                            @lista.push_back(@etq1)
+                            @lista.push_back(@etq2)
+                            @lista.push_back(@etq3)
+                            @lista.push_back(@etq4)
+                            @lista.push_back(@etq5)
+                            expect(@lista.sort).to eq([@etq5,@etq4,@etq2,@etq3,@etq1])
+                    end
+
+                    it "Collect" do
+                            @lista.push_back(@etq1)
+                            @lista.push_back(@etq2)
+                            @lista.push_back(@etq3)
+                            @lista.push_back(@etq4)
+                            @lista.push_back(@etq5)
+                            expect(@lista.map{|i| i}).to eq([@etq1,@etq2,@etq3,@etq4,@etq5])
+			    expect(@lista.collect{|i| i}).to eq([@etq1,@etq2,@etq3,@etq4,@etq5])
+                    end
+
+                    it "Select" do
+                            @lista.push_back(@etq1)
+                            @lista.push_back(@etq2)
+                            @lista.push_back(@etq3)
+                            @lista.push_back(@etq4)
+                            @lista.push_back(@etq5)
+                            expect(@lista.select{|i| i}).to eq([@etq1,@etq2,@etq3,@etq4,@etq5])
+                    end
+	    end
+
     end
 
     describe Valoracion_nut::Individuo do
