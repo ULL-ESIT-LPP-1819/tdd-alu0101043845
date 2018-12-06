@@ -228,4 +228,9 @@ RSpec.describe Etiqueta do
 
     end
 
+
+
+
+
+
 end

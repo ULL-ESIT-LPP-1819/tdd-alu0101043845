@@ -1,6 +1,7 @@
 Node = Struct.new(:value, :next, :prev)
-
+	
 	class Etiqueta_nut
+		include Comparable
 		attr_reader :name, :grasas, :grasas_sat, :hidratos, :azucar, :proteina, :sal
 		def initialize(n, g, gs, h, a, p, s)
 			@name, @grasas, @grasas_sat, @hidratos, @azucar, @proteina, @sal = n, g, gs, h, a, p, s
@@ -8,6 +9,16 @@ Node = Struct.new(:value, :next, :prev)
 
 		def to_s()
 			"(\"#{@name}\",#{@grasas},#{@grasas_sat},#{@hidratos},#{@azucar},#{@proteina},#{@sal})"
+		end
+
+		def <=>(other)
+			return @name <=> other.name
+			return @grasas <=> other.grasas
+			return @grasas_sat <=> other.grasas_sat
+			return @hidratos <=> other.hidratos
+			return @azucar <=> other.azucar
+			return @proteina <=> other.proteina
+			return @sal <=> other.sal
 		end
 	end
 
