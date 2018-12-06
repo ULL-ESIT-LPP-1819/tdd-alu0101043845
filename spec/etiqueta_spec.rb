@@ -81,6 +81,42 @@ RSpec.describe Etiqueta do
             end
 
     end
+
+    describe "#Comparar la información entre dos etiquetas" do
+
+	it "Es mayor" do
+		expect(@etq1 > @etq2).to eq(true)
+	end
+ 
+        it "Es menor" do
+                expect(@etq2 < @etq1).to eq(true)
+        end
+
+ 
+        it "Es mayor o igual" do
+                expect(@etq1 >= @etq2).to eq(true)
+		expect(@etq1 >= @etq1).to eq(true)
+        end
+
+ 
+        it "Es menor o igual" do
+                expect(@etq2 <= @etq1).to eq(true)
+		expect(@etq2 <= @etq1).to eq(true)
+        end
+
+ 
+        it "Es igual" do
+                expect(@etq1 == @etq1).to eq(true)
+        end
+
+ 
+        it "No es igual" do
+                expect(@etq1 != @etq2).to eq(true)
+        end
+
+
+    end
+
   end
     describe Lista do
 	    it "Insertar nodo a la lista" do
