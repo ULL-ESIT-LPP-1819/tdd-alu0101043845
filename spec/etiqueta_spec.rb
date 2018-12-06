@@ -242,6 +242,54 @@ RSpec.describe Etiqueta do
                     end
 	    end
 
+	    describe "Enumerar individuos" do
+                    it "Máximo" do
+                            @lista.push_back(@suj1)
+                            @lista.push_back(@suj2)
+                            @lista.push_back(@suj3)
+                            @lista.push_back(@suj4)
+                            @lista.push_back(@suj5)
+                            expect(@lista.max).to eq(@suj3)
+                    end
+
+                    it "Mínimo" do
+                            @lista.push_back(@suj1)
+                            @lista.push_back(@suj2)
+                            @lista.push_back(@suj3)
+                            @lista.push_back(@suj4)
+                            @lista.push_back(@suj5)
+                            expect(@lista.min).to eq(@suj5)
+                    end
+
+                    it "Sort" do
+                            @lista.push_back(@suj1)
+                            @lista.push_back(@suj2)
+                            @lista.push_back(@suj3)
+                            @lista.push_back(@suj4)
+                            @lista.push_back(@suj5)
+			    expect(@lista.sort).to eq([@suj5,@suj2,@suj1,@suj4,@suj3])
+                    end
+
+                    it "Collect" do
+                            @lista.push_back(@suj1)
+                            @lista.push_back(@suj2)
+                            @lista.push_back(@suj3)
+                            @lista.push_back(@suj4)
+                            @lista.push_back(@suj5)
+                            expect(@lista.map{|i| i}).to eq([@suj1,@suj2,@suj3,@suj4,@suj5])
+                            expect(@lista.collect{|i| i}).to eq([@suj1,@suj2,@suj3,@suj4,@suj5])
+                    end
+
+                    it "Select" do
+                            @lista.push_back(@suj1)
+                            @lista.push_back(@suj2)
+                            @lista.push_back(@suj3)
+                            @lista.push_back(@suj4)
+                            @lista.push_back(@suj5)
+                            expect(@lista.select{|i| i}).to eq([@suj1,@suj2,@suj3,@suj4,@suj5])
+                    end
+            end
+
     end
 
     describe Valoracion_nut::Individuo do
