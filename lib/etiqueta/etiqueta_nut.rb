@@ -136,7 +136,7 @@ Node = Struct.new(:value, :next, :prev)
 module Valoracion_nut
 
 	class Val_nut
-
+		include Comparable
 		attr_reader :peso, :talla, :edad, :sexo, :c_cintura, :c_cadera
 	
 		def initialize(peso, talla, edad, sexo, c_cintura, c_cadera)
@@ -146,7 +146,7 @@ module Valoracion_nut
 		def to_s
 			"(#{@peso}kg, #{@talla}m, #{@edad} años, #{@sexo}, #{@c_cintura}cm, #{@c_cadera}cm)"
 		end
-
+		
 		def calcular_imc
 			imc = @peso/(@talla*@talla)
 		end
@@ -216,6 +216,15 @@ module Valoracion_nut
 					"No hay registro"
 				end
 			end
+		end
+
+		def <=>(other)
+			return @peso <=> other.peso
+		       	return @talla <=> other.talla
+			return @edad <=> other.edad
+		       	return @sexo <=> other.sexo
+		       	return @c_cintura <=> other.c_cintura
+			return @c_cadera <=> other.c_cadera
 		end
 	end
 
