@@ -23,6 +23,8 @@ Node = Struct.new(:value, :next, :prev)
 	end
 
 	class Lista
+		include Enumerable
+
 		attr_reader :tam, :head, :tail
 	
 		def initialize()
@@ -131,6 +133,15 @@ Node = Struct.new(:value, :next, :prev)
 			end
 			cadena = cadena + "}"
 			cadena
+		end
+
+		def each
+			return nil unless @tam > 0
+			aux = @head
+			until aux.nil?
+				yield aux.value
+				aux = aux.next
+			end
 		end
 	end
 module Valoracion_nut
