@@ -210,7 +210,7 @@ RSpec.describe Etiqueta do
                             @lista.push_back(@etq3)
                             @lista.push_back(@etq4)
                             @lista.push_back(@etq5)
-                            expect(@lista.min).to eq(@etq5)
+                            expect(@lista.min).to eq(@etq3)
                     end
 
                     it "Sort" do
@@ -219,7 +219,7 @@ RSpec.describe Etiqueta do
                             @lista.push_back(@etq3)
                             @lista.push_back(@etq4)
                             @lista.push_back(@etq5)
-                            expect(@lista.sort).to eq([@etq5,@etq4,@etq2,@etq3,@etq1])
+                            expect(@lista.sort).to eq([@etq3,@etq4,@etq2,@etq5,@etq1])
                     end
 
                     it "Collect" do
@@ -267,7 +267,7 @@ RSpec.describe Etiqueta do
                             @lista.push_back(@suj3)
                             @lista.push_back(@suj4)
                             @lista.push_back(@suj5)
-			    expect(@lista.sort).to eq([@suj5,@suj2,@suj1,@suj4,@suj3])
+			    expect(@lista.sort).to eq([@suj5,@suj1,@suj2,@suj4,@suj3])
                     end
 
                     it "Collect" do
@@ -306,21 +306,21 @@ RSpec.describe Etiqueta do
     	describe "#Comparar la información entre dos etiquetas" do
 
         	it "Es mayor" do
-                	expect(@suj1 > @suj2).to eq(true)
+                	expect(@suj2 > @suj1).to eq(true)
 	        end
 
 	        it "Es menor" do
-	                expect(@suj2 < @suj1).to eq(true)
+	                expect(@suj1 < @suj2).to eq(true)
 	        end
 
 
         	it "Es mayor o igual" do
-	                expect(@suj1 >= @suj2).to eq(true)
+	                expect(@suj2 >= @suj1).to eq(true)
         	        expect(@suj1 >= @suj1).to eq(true)
 	        end
 
 	        it "Es menor o igual" do
-	                expect(@suj2 <= @suj1).to eq(true)
+	                expect(@suj1 <= @suj2).to eq(true)
         	        expect(@suj1 <= @suj1).to eq(true)
 	        end
 

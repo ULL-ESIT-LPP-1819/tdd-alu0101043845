@@ -12,13 +12,12 @@ Node = Struct.new(:value, :next, :prev)
 		end
 
 		def <=>(other)
-			return @name <=> other.name
 			return @grasas <=> other.grasas
-			return @grasas_sat <=> other.grasas_sat
-			return @hidratos <=> other.hidratos
-			return @azucar <=> other.azucar
-			return @proteina <=> other.proteina
-			return @sal <=> other.sal
+			#return @grasas_sat <=> other.grasas_sat
+			#return @hidratos <=> other.hidratos
+			#return @azucar <=> other.azucar
+			#return @proteina <=> other.proteina
+			#return @sal <=> other.sal
 		end
 	end
 
@@ -230,12 +229,9 @@ module Valoracion_nut
 		end
 
 		def <=>(other)
-			return @peso <=> other.peso
-		       	return @talla <=> other.talla
-			return @edad <=> other.edad
-		       	return @sexo <=> other.sexo
-		       	return @c_cintura <=> other.c_cintura
-			return @c_cadera <=> other.c_cadera
+			imc=calcular_imc
+			imc2=other.calcular_imc
+			return imc <=> imc2
 		end
 	end
 
