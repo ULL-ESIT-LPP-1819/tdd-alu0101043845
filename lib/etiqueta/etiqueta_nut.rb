@@ -20,6 +20,23 @@ Node = Struct.new(:value, :next, :prev)
 			#return @sal <=> other.sal
 		end
 	end
+	
+	class Alimento < Etiqueta_nut
+		attr_reader :lipido, :fibra
+		
+		def initialize(n, g, gs, h, a, p, s, l, f)
+			super(n, g, gs, h, a, p, s)
+			@lipidp, @fibra = l, f
+		end
+
+		def to_s()
+			"(\"#{@name}\",#{@grasas},#{@grasas_sat},#{@hidratos},#{@azucar},#{@proteina},#{@sal},#{@lipido},#{@fibra})"
+		end
+
+		def val_ener
+			return (@grasas * 9) + (@hidratos * 4) + (@azucar * 2.4) + (@lipido * 4) + (@fibra * 2) + (@proteina *4) + (@sal * 6)
+		end
+	end
 
 	class Lista
 		include Enumerable
@@ -143,6 +160,29 @@ Node = Struct.new(:value, :next, :prev)
 			end
 		end
 	end
+
+	class Menu
+                attr_reader :lista
+                def initialize
+                        @lista = Lista.new()
+                end
+
+                def add_alimento(alimento)
+                        @lista.push_back(alimento)
+                end
+
+                def to_s
+                        @lista.to_s
+                end
+
+                def energia
+                        ener=0
+                        @lista.each{|entry| ener = ener + entry.value.val_ener}
+                        return ener
+                end
+
+        end
+
 module Valoracion_nut
 
 	class Val_nut
@@ -270,5 +310,44 @@ module Valoracion_nut
 
 	                "(#{@peso}kg, #{@talla}m, #{@edad} años, #{@sexo}, #{@c_cintura}cm, #{@c_cadera}cm, #{pac}, #{trat})"
         	end
+	end
+
+	class Sujeto < Val_nut
+		
+		attr_reader :factor_a_f, :peso_t_i, :gasto_e_b, :efecto_t, :gasto_a_f, :gasto_e_t
+ 
+ 		def initialize(factor_af, peso, talla, edad, sexo, c_cintura, c_cadera)
+                        super(peso, talla, edad, sexo, c_cintura, c_cadera)
+			@factor_a_f = factor_af
+			@peso_t_i = (talla - 150) * 0.75 + 50
+			if @sexo == "mujer"
+				@gasto_e_b = (10 * peso) + (6.25 * talla) - (5 * edad) - 161
+			else
+				@gasto_e_b = (10 * peso) + (6.25 * talla) - (5 * edad) +5
+			end
+			
+			@efecto_t = @gasto_e_b * 0.1
+			@gasto_a_f = @gasto_e_b * factor_af
+			@gasto_e_t = @gasto_e_b + @efecto_t + @gasto_a_f
+				
+		end
+
+		def to_s
+			
+			af = "ideal"
+			if @factor_a_f < 0.12
+                                af = "Reposo"
+			elsif @factor_a_f < 0.27
+                                af = "Actividad ligera"
+	    
+                        elsif @factor_a_f < 0.54
+                                af = "Actividad moderada"
+
+                        else 
+                                af = "Actividad intensa"
+			end
+
+                        "(#{@peso}kg, #{@talla}m, #{@edad} años, #{@sexo}, #{@c_cintura}cm, #{@c_cadera}cm, #{af})"
+                end
 	end
 end
