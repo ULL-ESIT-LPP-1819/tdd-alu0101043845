@@ -12,6 +12,19 @@ RSpec.describe Etiqueta do
 		@suj3 = Valoracion_nut::Individuo.new(1,140,1.56,17,"mujer",90.0,100.0)
 		@suj4 = Valoracion_nut::Individuo.new(1,130,1.7,30,"hombre",86.0,90.0)
 		@suj5 = Valoracion_nut::Individuo.new(0,30,1.5,10,"mujer",34.0,40.0)
+		
+		@menu = Menu.new()
+                @alimento1 = Alimento.new("Tortilla",29.2,8.3,1.6,0.8,26.4,0.4,4,6)
+		@alimento2 = Alimento.new("Galletas saladas",6.2,1.4,52,1.6,6.7,0.7,10,3.2)
+		@alimento3 = Alimento.new("Pan",0.9,0.2,13.7,1.4,2.6,0.1,1.6,3.5)
+		@alimento4 = Alimento.new("Galletas con chocolate",2.8,1.2,7.8,4.3,0.6,0.2,6,3.3)
+		@alimento5 = Alimento.new("Bollo",16.5,4.4,45,2.2,7.1,0.6,18.3,2.3)
+                @lista_menu = Lista.new()
+                @sujeto1 = Valoracion_nut::Sujeto.new("Actividad intensa",80,2,20,"hombre",54.0,60.0)
+                @sujeto2 = Valoracion_nut::Sujeto.new("Actividad moderada",75,1.8,19,"hombre",70.0,75.0)
+                @sujeto3 = Valoracion_nut::Sujeto.new("Reposo",140,1.56,17,"mujer",90.0,100.0)
+                @sujeto4 = Valoracion_nut::Sujeto.new("Actividad ligera",130,1.7,30,"hombre",86.0,90.0)
+                @sujeto5 = Valoracion_nut::Sujeto.new("Actividad ligera",30,1.5,10,"mujer",34.0,40.0)
 	end
 	
 
@@ -289,7 +302,7 @@ RSpec.describe Etiqueta do
                             expect(@lista.select{|i| i}).to eq([@suj1,@suj2,@suj3,@suj4,@suj5])
                     end
             end
-
+	
     end
 
     describe Valoracion_nut::Individuo do
@@ -389,7 +402,26 @@ RSpec.describe Etiqueta do
     end
 
 
+   	describe Valoracion_nut::Sujeto do
 
+		it "to_s" do
+			expect(@sujeto1.to_s).to eq("(80kg, 2m, 20 años, hombre, 54.0cm, 60.0cm, Actividad intensa)")
+		end
+		
+		it "exigencias calóricas" do
+                        @menu.add_alimento(@alimento1)
+			@menu.add_alimento(@alimento2)
+			@menu.add_alimento(@alimento3)
+			@menu.add_alimento(@alimento4)
+                        @menu.add_alimento(@alimento5)
+			expect(@sujeto1.exigencia_c(@menu.energia)).to eq("La cantidad de la alimentación es excesiva para cubrir las exigencias calóricas del organismo y no mantiene el equilibrio de su balance")
+			expect(@sujeto2.exigencia_c(@menu.energia)).to eq("La cantidad de la alimentación es excesiva para cubrir las exigencias calóricas del organismo y no mantiene el equilibrio de su balance")
+			expect(@sujeto3.exigencia_c(@menu.energia)).to eq("La cantidad de la alimentación no es suficiente para cubrir las exigencias calóricas del organismo y no mantiene el equilibrio de su balance")
+			expect(@sujeto4.exigencia_c(@menu.energia)).to eq("La cantidad de la alimentación no es suficiente para cubrir las exigencias calóricas del organismo y no mantiene el equilibrio de su balance")
+			expect(@sujeto5.exigencia_c(@menu.energia)).to eq("La cantidad de la alimentación es excesiva para cubrir las exigencias calóricas del organismo y no mantiene el equilibrio de su balance")
+
+		end
+	end
 
 
 

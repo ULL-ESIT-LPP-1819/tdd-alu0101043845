@@ -26,7 +26,7 @@ Node = Struct.new(:value, :next, :prev)
 		
 		def initialize(n, g, gs, h, a, p, s, l, f)
 			super(n, g, gs, h, a, p, s)
-			@lipidp, @fibra = l, f
+			@lipido, @fibra = l, f
 		end
 
 		def to_s()
@@ -34,7 +34,7 @@ Node = Struct.new(:value, :next, :prev)
 		end
 
 		def val_ener
-			return (@grasas * 9) + (@hidratos * 4) + (@azucar * 2.4) + (@lipido * 4) + (@fibra * 2) + (@proteina *4) + (@sal * 6)
+			return (9 * @grasas) + (4 * @hidratos) + (2.4 * @azucar) + (4 * @lipido) + (2 * @fibra) + (4 * @proteina) + (6 * @sal)
 		end
 	end
 
@@ -177,7 +177,7 @@ Node = Struct.new(:value, :next, :prev)
 
                 def energia
                         ener=0
-                        @lista.each{|entry| ener = ener + entry.value.val_ener}
+                        @lista.collect{|entry| ener = ener + entry.val_ener}
                         return ener
                 end
 
@@ -319,6 +319,19 @@ module Valoracion_nut
  		def initialize(factor_af, peso, talla, edad, sexo, c_cintura, c_cadera)
                         super(peso, talla, edad, sexo, c_cintura, c_cadera)
 			@factor_a_f = factor_af
+
+			if factor_af == "Reposo"
+				factor_a_f = 0.0
+			elsif factor_af == "Actividad ligera"
+				factor_a_f = 0.12
+			elsif factor_af == "Actividad moderada"
+				factor_a_f = 0.27
+			elsif factor_af == "Actividad intensa"
+				factor_a_f = 0.54
+			else
+				factor_a_f =0
+			end
+
 			@peso_t_i = (talla - 150) * 0.75 + 50
 			if @sexo == "mujer"
 				@gasto_e_b = (10 * peso) + (6.25 * talla) - (5 * edad) - 161
@@ -327,27 +340,24 @@ module Valoracion_nut
 			end
 			
 			@efecto_t = @gasto_e_b * 0.1
-			@gasto_a_f = @gasto_e_b * factor_af
+			@gasto_a_f = @gasto_e_b * factor_a_f
 			@gasto_e_t = @gasto_e_b + @efecto_t + @gasto_a_f
 				
 		end
 
 		def to_s
-			
-			af = "ideal"
-			if @factor_a_f < 0.12
-                                af = "Reposo"
-			elsif @factor_a_f < 0.27
-                                af = "Actividad ligera"
-	    
-                        elsif @factor_a_f < 0.54
-                                af = "Actividad moderada"
-
-                        else 
-                                af = "Actividad intensa"
-			end
-
-                        "(#{@peso}kg, #{@talla}m, #{@edad} años, #{@sexo}, #{@c_cintura}cm, #{@c_cadera}cm, #{af})"
+                        "(#{@peso}kg, #{@talla}m, #{@edad} años, #{@sexo}, #{@c_cintura}cm, #{@c_cadera}cm, #{@factor_a_f})"
                 end
+
+		def exigencia_c(cal_menu)
+                        if (cal_menu - @gasto_e_t) < (@gasto_e_t * 0.1)
+                                "La cantidad de la alimentación no es suficiente para cubrir las exigencias calóricas del organismo y no mantiene el equilibrio de su balance"
+                        elsif (cal_menu - @gasto_e_t) > (@gasto_e_t *0.1)
+                                "La cantidad de la alimentación es excesiva para cubrir las exigencias calóricas del organismo y no mantiene el equilibrio de su balance"
+			else
+				"La cantidad de la alimentación es suficiente para cubrir las exigencias calóricas del organismo y mantiene el equilibrio de su balance"
+			end
+                end
+
 	end
 end
