@@ -176,7 +176,7 @@ Node = Struct.new(:value, :next, :prev)
                 end
 
                 def energia
-                        ener=0
+			ener=0
                         @lista.collect{|entry| ener = ener + entry.val_ener}
                         return ener
                 end
