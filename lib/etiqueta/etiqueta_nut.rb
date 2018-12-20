@@ -2,13 +2,13 @@ Node = Struct.new(:value, :next, :prev)
 	
 	class Etiqueta_nut
 		include Comparable
-		attr_reader :name, :grasas, :grasas_sat, :hidratos, :azucar, :proteina, :sal
-		def initialize(n, g, gs, h, a, p, s)
-			@name, @grasas, @grasas_sat, @hidratos, @azucar, @proteina, @sal = n, g, gs, h, a, p, s
+		attr_reader :name, :grasas, :grasas_sat, :hidratos, :azucar, :proteina, :sal, :fibra
+		def initialize(n, g, gs, h, a, p, s, f)
+			@name, @grasas, @grasas_sat, @hidratos, @azucar, @proteina, @sal, @fibra = n, g, gs, h, a, p, s, f
 		end
 
 		def to_s()
-			"(\"#{@name}\",#{@grasas},#{@grasas_sat},#{@hidratos},#{@azucar},#{@proteina},#{@sal})"
+			"(\"#{@name}\",#{@grasas},#{@grasas_sat},#{@hidratos},#{@azucar},#{@proteina},#{@sal},#{@fibra})"
 		end
 
 		def <=>(other)
@@ -18,23 +18,10 @@ Node = Struct.new(:value, :next, :prev)
 			#return @azucar <=> other.azucar
 			#return @proteina <=> other.proteina
 			#return @sal <=> other.sal
-		end
-	end
-	
-	class Alimento < Etiqueta_nut
-		attr_reader :lipido, :fibra
+		end	
 		
-		def initialize(n, g, gs, h, a, p, s, l, f)
-			super(n, g, gs, h, a, p, s)
-			@lipido, @fibra = l, f
-		end
-
-		def to_s()
-			"(\"#{@name}\",#{@grasas},#{@grasas_sat},#{@hidratos},#{@azucar},#{@proteina},#{@sal},#{@lipido},#{@fibra})"
-		end
-
 		def val_ener
-			return (9 * @grasas) + (4 * @hidratos) + (2.4 * @azucar) + (4 * @lipido) + (2 * @fibra) + (4 * @proteina) + (6 * @sal)
+			return (9 * @grasas) + (4 * @hidratos) + (2 * @fibra) + (4 * @proteina) + (6 * @sal)
 		end
 	end
 
