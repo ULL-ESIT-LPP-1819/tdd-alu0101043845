@@ -146,6 +146,49 @@ Node = Struct.new(:value, :next, :prev)
 				aux = aux.next
 			end
 		end
+
+		def sort_for
+			sol = []
+			aux = @head
+			sol << aux.value
+			for i in (1...@tam)
+				aux = aux.next
+				for j in (0..sol.size)
+					if (j == sol.size)
+						sol << aux.value
+					elsif (aux.value < sol[j])
+						sol.insert(j, aux.value)
+						break
+					end
+				end
+			end
+			return sol
+		end
+
+		def sort_each
+			sol = []
+			sol << @head.value
+			self.each_with_index do |x, i|
+				if (i != 0)
+					sol.each_with_index do |y, j|
+					if (j == sol.size - 1)
+						if (x < y)
+							sol.insert(j, x)
+							break
+						else
+							sol.push(x)
+							break
+						end
+						elsif(x < y)
+							sol.insert(j, x)
+							break
+						end
+					end
+				end
+			end
+			return sol
+		end
+
 	end
 
 	class Menu
@@ -345,6 +388,11 @@ module Valoracion_nut
 				"La cantidad de la alimentación es suficiente para cubrir las exigencias calóricas del organismo y mantiene el equilibrio de su balance"
 			end
                 end
+
+                def <=>(other)
+                        return @gasto_e_t <=> other.gasto_e_t
+                end
+
 
 	end
 end

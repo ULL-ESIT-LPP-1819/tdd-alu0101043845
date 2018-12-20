@@ -503,6 +503,134 @@ RSpec.describe Etiqueta do
                         @lista_s.push_back(@sujeto10)
 		end
 
+		it "Ordenar array usando for" do
+                        @array_m = []
+                        @array_m << @menu1
+                        @array_m << @menu2
+                        @array_m << @menu3
+                        @array_m << @menu4
+                        @array_m << @menu5
+                        @array_m << @menu6
+                        @array_m << @menu7
+                        @array_m << @menu8
+                        @array_m << @menu9
+                        @array_m << @menu10
+
+	                sol = []
+			sol << @array_m[0]
+                	for i in (1...@array_m.size)
+				aux = @array_m[i]
+	                        for j in (0..sol.size)
+					if (j == sol.size)
+						sol.push(aux)
+        	                        elsif (aux.energia < sol[j].energia)
+						sol.insert(j, aux)
+                                	        break
+					end
+				end
+			end
+			expect(sol).to eq([@menu3,@menu10,@menu6,@menu7,@menu1,@menu5,@menu9,@menu4,@menu8,@menu2])
+		end
+
+                it "ordenar lista con for" do
+                        @lista_s = Lista.new()
+                        @lista_s.push_back(@sujeto1)
+                        @lista_s.push_back(@sujeto2)
+                        @lista_s.push_back(@sujeto3)
+                        @lista_s.push_back(@sujeto4)
+                        @lista_s.push_back(@sujeto5)
+                        @lista_s.push_back(@sujeto6)
+                        @lista_s.push_back(@sujeto7)
+                        @lista_s.push_back(@sujeto8)
+                        @lista_s.push_back(@sujeto9)
+                        @lista_s.push_back(@sujeto10)
+			expect(@lista_s.sort_for).to eq([@sujeto9, @sujeto5, @sujeto10, @sujeto8, @sujeto6, @sujeto2, @sujeto7, @sujeto1, @sujeto3, @sujeto4])
+                end
+
+                it "ordenar array con each" do
+                        @array_m = []
+                        @array_m << @menu1
+                        @array_m << @menu2
+                        @array_m << @menu3
+                        @array_m << @menu4
+                        @array_m << @menu5
+                        @array_m << @menu6
+                        @array_m << @menu7
+                        @array_m << @menu8
+                        @array_m << @menu9
+                        @array_m << @menu10
+			
+			sol = []
+			sol << @array_m[0]
+			@array_m.each_with_index do |x, i|
+				if (i != 0)
+					sol.each_with_index do |y, j|
+						if (j == sol.size - 1)
+							if (x.energia < y.energia)
+								sol.insert(j, x)
+								break
+							else
+								sol.push(x)
+								break
+							end
+						elsif (x.energia < y.energia)
+							sol.insert(j, x)
+							break
+						end
+					end
+				end
+			end
+                        expect(sol).to eq([@menu3,@menu10,@menu6,@menu7,@menu1,@menu5,@menu9,@menu4,@menu8,@menu2])
+                end
+
+                it "ordenar lista con each" do
+                        @lista_s = Lista.new()
+                        @lista_s.push_back(@sujeto1)
+                        @lista_s.push_back(@sujeto2)
+                        @lista_s.push_back(@sujeto3)
+                        @lista_s.push_back(@sujeto4)
+                        @lista_s.push_back(@sujeto5)
+                        @lista_s.push_back(@sujeto6)
+                        @lista_s.push_back(@sujeto7)
+                        @lista_s.push_back(@sujeto8)
+                        @lista_s.push_back(@sujeto9)
+                        @lista_s.push_back(@sujeto10)
+                        expect(@lista_s.sort_each).to eq([@sujeto9, @sujeto5, @sujeto10, @sujeto8, @sujeto6, @sujeto2, @sujeto7, @sujeto1, @sujeto3, @sujeto4])
+                end
+
+                it "array de menús" do
+                        @array_m = []
+                        @array_m << @menu1
+                        @array_m << @menu2
+                        @array_m << @menu3
+                        @array_m << @menu4
+                        @array_m << @menu5
+                        @array_m << @menu6
+                        @array_m << @menu7
+                        @array_m << @menu8
+                        @array_m << @menu9
+                        @array_m << @menu10
+			expect(@array_m.sort_by{|a| a.energia}).to eq([@menu3,@menu10,@menu6,@menu7,@menu1,@menu5,@menu9,@menu4,@menu8,@menu2])
+                end
+
+                it "ordenar lista con sort" do
+                        @lista_s = Lista.new()
+                        @lista_s.push_back(@sujeto1)
+                        @lista_s.push_back(@sujeto2)
+                        @lista_s.push_back(@sujeto3)
+                        @lista_s.push_back(@sujeto4)
+                        @lista_s.push_back(@sujeto5)
+                        @lista_s.push_back(@sujeto6)
+                        @lista_s.push_back(@sujeto7)
+                        @lista_s.push_back(@sujeto8)
+                        @lista_s.push_back(@sujeto9)
+                        @lista_s.push_back(@sujeto10)
+                        expect(@lista_s.sort).to eq([@sujeto9, @sujeto5, @sujeto10, @sujeto8, @sujeto6, @sujeto2, @sujeto7, @sujeto1, @sujeto3, @sujeto4])
+                end
+
+
+
+
 		
 	end
 
