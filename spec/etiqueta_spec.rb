@@ -475,7 +475,7 @@ RSpec.describe Etiqueta do
 
 	describe "Programación funcional" do
 		
-		it "lista de menús" do
+		it "array de menús" do
 			@array_m = []
                         @array_m << @menu1
                         @array_m << @menu2
@@ -487,9 +487,23 @@ RSpec.describe Etiqueta do
                         @array_m << @menu8
                         @array_m << @menu9
                         @array_m << @menu10
-
-
 		end
+
+		it "lista de sujetos" do
+			@lista_s = Lista.new()
+	                @lista_s.push_back(@sujeto1)
+	                @lista_s.push_back(@sujeto2)
+	                @lista_s.push_back(@sujeto3)
+	                @lista_s.push_back(@sujeto4)
+                	@lista_s.push_back(@sujeto5)            
+		   	@lista_s.push_back(@sujeto6)
+                        @lista_s.push_back(@sujeto7)
+                        @lista_s.push_back(@sujeto8)
+                        @lista_s.push_back(@sujeto9)
+                        @lista_s.push_back(@sujeto10)
+		end
+
+		
 	end
 
 	
