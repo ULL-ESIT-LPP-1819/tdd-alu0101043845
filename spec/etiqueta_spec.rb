@@ -9,6 +9,16 @@ RSpec.describe Etiqueta do
 		@suj5 = Valoracion_nut::Individuo.new(0,30,1.5,10,"mujer",34.0,40.0)
 		
 		@menu = Menu.new()
+		@menu1 = Menu.new()
+                @menu2 = Menu.new()
+                @menu3 = Menu.new()
+                @menu4 = Menu.new()
+                @menu5 = Menu.new()
+                @menu6 = Menu.new()
+                @menu7 = Menu.new()
+                @menu8 = Menu.new()
+                @menu9 = Menu.new()
+                @menu10 = Menu.new()
 		@alimento1 = Etiqueta_nut.new("Tortilla",29.2,8.3,1.6,0.8,26.4,0.4,6)
 		@alimento2 = Etiqueta_nut.new("Galletas saladas",6.2,1.4,52,1.6,6.7,0.7,3.2)
 		@alimento3 = Etiqueta_nut.new("Pan",0.9,0.2,13.7,1.4,2.6,0.1,3.5)
@@ -17,12 +27,52 @@ RSpec.describe Etiqueta do
 		@alimento6 = Etiqueta_nut.new("Yogur",0.3,0.1,8,7.9,5.5,0.2,2.2)
 		@alimento7 = Etiqueta_nut.new("Queso",28.13,18.92,1.99,0.23,20.98,3,0)
 		@alimento8 = Etiqueta_nut.new("Cereales",0.9,0.2,84,8,7,1.13,7)
+		@alimento9 = Etiqueta_nut.new("Palomitas",15.8,7,44,1,9.4,2,17.5)
+		@alimento10 = Etiqueta_nut.new("Hamburguesa",4.24,0.336,26.43,1.74,11.63,0.295,11.7)
                 @lista_menu = Lista.new()
                 @sujeto1 = Valoracion_nut::Sujeto.new("Actividad intensa",80,2,20,"hombre",54.0,60.0)
                 @sujeto2 = Valoracion_nut::Sujeto.new("Actividad moderada",75,1.8,19,"hombre",70.0,75.0)
                 @sujeto3 = Valoracion_nut::Sujeto.new("Reposo",140,1.56,17,"mujer",90.0,100.0)
                 @sujeto4 = Valoracion_nut::Sujeto.new("Actividad ligera",130,1.7,30,"hombre",86.0,90.0)
-                @sujeto5 = Valoracion_nut::Sujeto.new("Actividad ligera",30,1.5,10,"mujer",34.0,40.0)
+                @sujeto5 = Valoracion_nut::Sujeto.new("Actividad ligera",30,1.5,10,"mujer",34.0,40.0)	
+		@sujeto6 = Valoracion_nut::Sujeto.new("Actividad intensa",73,1.76,24,"mujer",53.0,59.0)
+                @sujeto7 = Valoracion_nut::Sujeto.new("Actividad moderada",87,1.93,34,"hombre",74.0,78.0)
+                @sujeto8 = Valoracion_nut::Sujeto.new("Reposo",57,1.6,46,"hombre",40.0,50.0)
+                @sujeto9 = Valoracion_nut::Sujeto.new("Actividad ligera",48,1.59,50,"mujer",40.0,47.0)
+                @sujeto10 = Valoracion_nut::Sujeto.new("Actividad ligera",60,1.65,43,"mujer",48.0,54.0)
+		@menu1.add_alimento(@alimento1)                       
+	       	@menu1.add_alimento(@alimento7)               
+       		@menu1.add_alimento(@alimento6)
+		@menu2.add_alimento(@alimento2)
+		@menu2.add_alimento(@alimento9)
+		@menu2.add_alimento(@alimento5)
+		@menu3.add_alimento(@alimento10)
+		@menu3.add_alimento(@alimento6)
+		@menu3.add_alimento(@alimento4)
+		@menu4.add_alimento(@alimento3)
+		@menu4.add_alimento(@alimento7)
+                @menu4.add_alimento(@alimento1)
+		@menu5.add_alimento(@alimento8)
+                @menu5.add_alimento(@alimento6)
+                @menu5.add_alimento(@alimento5)
+                @menu6.add_alimento(@alimento8)
+                @menu6.add_alimento(@alimento6)
+                @menu6.add_alimento(@alimento4)
+                @menu7.add_alimento(@alimento4)
+                @menu7.add_alimento(@alimento2)
+                @menu7.add_alimento(@alimento5)
+		@menu8.add_alimento(@alimento10)
+                @menu8.add_alimento(@alimento8)
+                @menu8.add_alimento(@alimento9)
+                @menu9.add_alimento(@alimento1)
+                @menu9.add_alimento(@alimento4) 
+		@menu9.add_alimento(@alimento5)
+                @menu10.add_alimento(@alimento4)
+                @menu10.add_alimento(@alimento5)
+                @menu10.add_alimento(@alimento6)
+
+
+
 	end
 	
 
@@ -422,6 +472,27 @@ RSpec.describe Etiqueta do
 
 		end
 	end
+
+	describe "Programación funcional" do
+		
+		it "lista de menús" do
+			@array_m = []
+                        @array_m << @menu1
+                        @array_m << @menu2
+                        @array_m << @menu3
+                        @array_m << @menu4
+                        @array_m << @menu5
+                        @array_m << @menu6
+                        @array_m << @menu7
+                        @array_m << @menu8
+                        @array_m << @menu9
+                        @array_m << @menu10
+
+
+		end
+	end
+
+	
 
 
 
