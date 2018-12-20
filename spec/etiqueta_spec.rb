@@ -1,3 +1,7 @@
+require 'spec_helper' 
+require 'benchmark'
+include Benchmark
+
 RSpec.describe Etiqueta do
 
 	before :each do
@@ -629,7 +633,39 @@ RSpec.describe Etiqueta do
                 end
 
 
+		it "Benchmark" do
+                        @array_m = []
+                        @array_m << @menu1
+                        @array_m << @menu2
+                        @array_m << @menu3
+                        @array_m << @menu4
+                        @array_m << @menu5
+                        @array_m << @menu6
+                        @array_m << @menu7
+                        @array_m << @menu8
+                        @array_m << @menu9
+                        @array_m << @menu10
 
+                        @lista_s = Lista.new()
+                        @lista_s.push_back(@sujeto1)
+                        @lista_s.push_back(@sujeto2)
+                        @lista_s.push_back(@sujeto3)
+                        @lista_s.push_back(@sujeto4)
+                        @lista_s.push_back(@sujeto5)
+                        @lista_s.push_back(@sujeto6)
+                        @lista_s.push_back(@sujeto7)
+                        @lista_s.push_back(@sujeto8)
+                        @lista_s.push_back(@sujeto9)
+                        @lista_s.push_back(@sujeto10)
+			
+		      Benchmark.benchmark(CAPTION, 7, FORMAT, ">total:", ">avg:") do |x|
+                              list_f = x.report("Lista for:") {vec1 = @lista_s.sort_for}
+                              list_e = x.report("Lista each:") {vec2 = @lista_s.sort_each}
+			      array_s = x.report("Array sort:") {vec3 = @array_m.sort_by{|a| a.energia}}
+			      list_s = x.report("Lista sort:") {vec4 = @lista_s.sort}
+			      [list_f+list_e+array_s+list_s, (list_f+list_e+array_s+list_s)/4]
+		      end
+	      	end
 
 		
 	end
