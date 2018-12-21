@@ -584,7 +584,8 @@ RSpec.describe Etiqueta do
 					end
 				end
 			end
-                        expect(sol).to eq([@menu3,@menu10,@menu6,@menu7,@menu1,@menu5,@menu9,@menu4,@menu8,@menu2])
+
+			expect(sol).to eq([@menu3,@menu10,@menu6,@menu7,@menu1,@menu5,@menu9,@menu4,@menu8,@menu2])
                 end
 
                 it "ordenar lista con each" do
@@ -657,13 +658,55 @@ RSpec.describe Etiqueta do
                         @lista_s.push_back(@sujeto8)
                         @lista_s.push_back(@sujeto9)
                         @lista_s.push_back(@sujeto10)
+			sort_for = lambda do |x| 
+				sol = []
+        	                sol << x[0]
+	                        for i in (1...x.size)
+                        	        aux = x[i]
+                	                for j in (0..sol.size)
+        	                                if (j == sol.size)
+	                                                sol.push(aux)
+                                        	elsif (aux.energia < sol[j].energia)
+                                	                sol.insert(j, aux)
+                        	                        break
+                	                        end
+        	                        end
+	                        end
+				return sol		 
+			end
+
+			sort_each = lambda do |z|
+				sol = []
+	                        sol << z[0]
+	                        z.each_with_index do |x, i|
+	                                if (i != 0)
+                                        	sol.each_with_index do |y, j|
+                                	                if (j == sol.size - 1)
+                        	                                if (x.energia < y.energia)
+                	                                                sol.insert(j, x)
+        	                                                        break
+	                                                        else
+                                                                	sol.push(x)
+                                                        	        break
+                                                	        end
+                                        	        elsif (x.energia < y.energia)
+                                	                        sol.insert(j, x)
+                        	                                break
+                	                                end
+        	                                end
+	                                end
+	                        end
+			end
 			
 		      Benchmark.benchmark(CAPTION, 7, FORMAT, ">total:", ">avg:") do |x|
                               list_f = x.report("Lista for:") {vec1 = @lista_s.sort_for}
                               list_e = x.report("Lista each:") {vec2 = @lista_s.sort_each}
 			      array_s = x.report("Array sort:") {vec3 = @array_m.sort_by{|a| a.energia}}
 			      list_s = x.report("Lista sort:") {vec4 = @lista_s.sort}
-			      [list_f+list_e+array_s+list_s, (list_f+list_e+array_s+list_s)/4]
+			      array_f = x.report("Array for:") {vec5 = sort_for.call(@array_m)}
+                              array_e = x.report("Array each:") {vec6 = sort_each.call(@array_m)}
+
+			      [list_f+list_e+array_s+list_s+array_f+array_e, (list_f+list_e+array_s+list_s+array_f+array_e)/6]
 		      end
 	      	end
 
